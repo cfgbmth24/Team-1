@@ -4,8 +4,150 @@
     <meta charset="UTF-8">
     <title>sportSeries</title>
     <link rel="stylesheet" href="styling.css">
+    <style>
+        /* Reset default margin and padding for body */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Avenir', sans-serif; /* Change font family to Avenir */
+        }
+
+        /* CSS styling for the top division */
+        .top-division {
+            background-color: white;
+            width: 100%;
+            height: 50px; /* Adjust the height as needed */
+            display: flex;
+            justify-content: flex-end; /* Align items to the right */
+            align-items: center;
+            padding: 0 20px; /* Add some padding for better appearance */
+        }
+
+        .button {
+            background-color: white; /* Change background color to white */
+            border: none;
+            color: black; /* Change text color to black */
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 1500px; /* Make the button rounded */
+        }
+
+        .button:hover {
+            background-color: #f0f0f0; /* Change background color on hover */
+        }
+
+        /* CSS styling for the light blue division */
+        .light-blue-division {
+            background-color: lightblue;
+            width: 100%;
+            height: 200px; /* Adjust the height as needed */
+            display: flex;
+            flex-direction: column; /* Arrange children vertically */
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            color: black; /* Change text color to black */
+            font-size: 24px; /* Adjust font size */
+            font-weight: bold; /* Make text bold */
+            position: relative; /* Set position relative for absolute positioning of image */
+        }
+
+        /* Add margin to the button */
+        .explore-button {
+            margin-top: 10px;
+        }
+
+        /* CSS for the logo */
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 300px; /* Adjust the width as needed */
+            height: auto;
+        }
+
+        /* CSS for the black division */
+        .black-division {
+            background-color: white;
+            color: white;
+            width: 100%;
+            height: 1720px; /* Adjust the height as needed */
+            text-align: center; /* Center text horizontally */
+            line-height: 300px; /* Center text vertically */
+            font-size: 24px; /* Adjust font size */
+            position: relative; /* Set position relative for absolute positioning of image */
+        }
+
+        /* CSS for the grey division */
+        .grey-division {
+            background-color: lightgrey; /* Change background color to light grey */
+            color: black; /* Change text color to black */
+            width: 100%;
+            height: 100px; /* Adjust the height as needed */
+            text-align: center; /* Align text to the center */
+            font-size: 24px; /* Adjust font size */
+            position: relative; /* Set position relative for absolute positioning of text */
+        }
+
+        .contact-text {
+            position: absolute;
+            top: 50%; /* Align to mid-height */
+            left: 50%; /* Align to dead center horizontally */
+            transform: translate(-50%, -50%); /* Adjust to center vertically and horizontally */
+        }
+
+        /* CSS for the row images */
+        .row {
+            position: absolute; /* Set position to absolute */
+            top: 1%; /* Adjust position from top */
+            left: 50%; /* Align to dead center horizontally */
+            transform: translateX(-50%); /* Adjust to center horizontally */
+            max-width: 100%; /* Set maximum width */
+            max-height: 100%; /* Set maximum height */
+        }
+
+        /* CSS for the row_2 image */
+        .row_2 {
+            top: 38%; /* Adjust position from top */
+            left: 50%; /* Shift slightly to the right */
+            transform: translateX(-50%); /* Adjust to center horizontally */
+        }
+
+        /* CSS for the row_3 image */
+        .row_3 {
+            top: 69%; /* Adjust position from top */
+            left: 50%; /* Shift slightly to the right */
+            transform: translateX(-50%); /* Adjust to center horizontally */
+        }
+    </style>
 </head>
 <body>
+
+<div class="top-division">
+    <button class="button" onclick="window.location.href='social_series.html'">Social Series</button>
+</div>
+
+<div class="light-blue-division">
+    <div>Sport Series 2024</div>
+    <button class="button explore-button" onclick="window.location.href='explore_series.html'">Explore Series</button>
+    <img src="assets/logo.jpg" alt="Logo" class="logo">
+</div>
+
+<div class="black-division">
+    <img src="assets/row_1.jpg" alt="Row 1" class="row">
+    <img src="assets/row_2.jpg" alt="Row 2" class="row row_2">
+    <img src="assets/row_3.jpg" alt="Row 3" class="row row_3">
+</div>
+
+<div class="grey-division">
+    <div>Contact us here:</div>
+    <div>|</div>
+    <div>info@diverseabilities.org.uk | fundraising@diverseabilities.org.uk or call us on ->> 01202 718266</div>
+</div>
 
 </body>
 </html>
