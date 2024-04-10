@@ -1,8 +1,9 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for,request
 from wtforms import StringField, SubmitField
-from wtforms.validators import InputRequired, Length
+from wtforms.validators import InputRequired, Length, ValidationError
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm 
+
 import os
 app = Flask(__name__)
 
@@ -13,36 +14,44 @@ app.config['SECRET_KEY'] = 'key'
 db = SQLAlchemy(app)
 db.init_app(app)
 
+@app.route('/', methods=['GET','POST'])
+def index():
+    form = Register_Form()
+    if request.method == 'POST':
+        new_user = User(username=form.username.data)
+        db.session.add(new_user)
+        
+        db.session.commit()
+        print("commit")
+
+        return redirect(url_for('series'))
+    return render_template('loginPage.html', form=form)
+
+@app.route('/events', methods=['GET', 'POST'])
+def events():
+    return render_template('sportSeriesPage.html')
+
+@app.route('/series', methods=['GET', 'POST'])
+def series():
+    return render_template('userSeriesPage.html')
+
+@app.route('/points', methods=['GET', 'POST'])
+def profile():
+    return render_template('pointsHistoryPage.html')
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+    username = db.Column(db.String(80))
     score = db.Column(db.Integer)
 class Register_Form(FlaskForm):
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
     submit = SubmitField("Register")
 
-
-@app.route('/')
-def index():
-    #form = Register_Form()
-   # if form.validate_on_submit():
-        #new_user = User(username=form.username.data)
-        #db.session.add(new_user)
-        #db.session.commit()
-        #return redirect(url_for('series'))
-    return render_template('index10.html')
-
-@app.route('/events')
-def events():
-    return render_template('events.html')
-
-@app.route('/series')
-def series():
-    return render_template('series.html')
-
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
+    def check_username(self, username):
+        existing_user_username = User.query.filter_by(username=username.data).first()
+        if existing_user_username:
+            raise ValidationError("That username already exists ")
 
 if __name__ == '__main__':
     if not os.path.exists('Leaderboard.db'):
